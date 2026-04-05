@@ -736,10 +736,11 @@
     var el = document.getElementById('beaResults');
     if (!q) { el.innerHTML = '<div class="bea-empty"><div class="big">👆</div>Digite para buscar</div>'; return; }
 
+    var qDigits = q.replace(/\D/g, '');
     var found = people.filter(function(p) {
-      // Busca sem acentos em nome e telefone (só dígitos para telefone)
+      // Nome: sem acentos | Telefone: só quando a query tem dígitos
       return matchNorm(p.name, q) ||
-             (p.phone && p.phone.replace(/\D/g,'').indexOf(q.replace(/\D/g,'')) > -1);
+             (qDigits.length > 0 && p.phone && p.phone.replace(/\D/g,'').indexOf(qDigits) > -1);
     });
 
     if (!found.length) { el.innerHTML = '<div class="bea-empty"><div class="big">🔎</div>Nenhum participante encontrado</div>'; return; }
@@ -820,7 +821,14 @@
     var list = people.slice();
     if (currentFilter !== 'all') list = list.filter(function(p){ return p.status === currentFilter; });
     // Filtro da tabela também sem acentos
-    if (q) list = list.filter(function(p){ return matchNorm(p.name, q) || (p.phone && p.phone.indexOf(q) > -1) || matchNorm(p.type, q); });
+    if (q) {
+      var tDigits = q.replace(/\D/g, '');
+      list = list.filter(function(p){
+        return matchNorm(p.name, q) ||
+               matchNorm(p.type, q) ||
+               (tDigits.length > 0 && p.phone && p.phone.replace(/\D/g,'').indexOf(tDigits) > -1);
+      });
+    }
     var tbody = document.getElementById('beaTbody'), empty = document.getElementById('beaTblEmpty');
     if (!list.length) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
     empty.style.display = 'none';
@@ -973,7 +981,7 @@
     if(e.key==='Enter'){
       var q=this.value.trim();
       if(!q)return;
-      var found=people.filter(function(p){return matchNorm(p.name,q)||(p.phone&&p.phone.indexOf(q)>-1);});
+      var eDigits=q.replace(/\D/g,''); var found=people.filter(function(p){return matchNorm(p.name,q)||(eDigits.length>0&&p.phone&&p.phone.replace(/\D/g,'').indexOf(eDigits)>-1);});
       if(found.length===1)beaOpenModal(found[0].id);
     }
   });
