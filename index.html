@@ -20,50 +20,40 @@
   }
   .bea-wrap { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 24px 20px; }
 
-  /* ── SETUP SCREEN ─────────────────────────────────────────────────────────── */
+  /* ── SETUP ─────────────────────────────────────────────────────────────────── */
   #beaSetupScreen {
     position: fixed; inset: 0; background: var(--bg); z-index: 10000;
     display: flex; align-items: center; justify-content: center; padding: 20px;
   }
-  .bea-setup-box {
-    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
-    padding: 32px; max-width: 500px; width: 100%;
-  }
-  .bea-setup-hd { text-align: center; margin-bottom: 28px; }
-  .bea-setup-ic { font-size: 3rem; margin-bottom: 12px; }
+  .bea-setup-box { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; max-width: 500px; width: 100%; }
+  .bea-setup-hd  { text-align: center; margin-bottom: 28px; }
+  .bea-setup-ic  { font-size: 3rem; margin-bottom: 12px; }
   .bea-setup-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 6px; }
-  .bea-setup-sub { font-family: 'Space Mono', monospace; font-size: 0.72rem; color: var(--muted); line-height: 1.6; }
-  .bea-setup-hint {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
-    padding: 14px 16px; font-family: 'Space Mono', monospace; font-size: 0.68rem;
-    color: var(--muted); line-height: 1.8; margin-bottom: 20px;
-  }
+  .bea-setup-sub   { font-family: 'Space Mono', monospace; font-size: 0.72rem; color: var(--muted); line-height: 1.6; }
+  .bea-setup-hint  { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; font-family: 'Space Mono', monospace; font-size: 0.68rem; color: var(--muted); line-height: 1.8; margin-bottom: 20px; }
   .bea-setup-hint strong { color: var(--accent); }
   .bea-setup-hint a { color: var(--accent); text-decoration: none; }
   .bea-setup-hint a:hover { text-decoration: underline; }
   .bea-setup-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
   @media (max-width: 460px) { .bea-setup-row { grid-template-columns: 1fr; } }
   .bea-err { background: rgba(255,58,92,0.1); border: 1px solid rgba(255,58,92,0.3); border-radius: 8px; padding: 10px 14px; font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--accent2); margin-top: 12px; display: none; line-height: 1.6; }
-  /* Botão flutuante de reconfigurar (visível quando há erro) */
   #beaRecfgBtn { display: none; position: fixed; bottom: 16px; right: 16px; z-index: 9998; background: var(--accent2); color: #fff; border: none; border-radius: 10px; padding: 12px 20px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; cursor: pointer; box-shadow: 0 4px 20px rgba(255,58,92,0.4); animation: beaSlide 0.3s ease; }
 
-  /* ── LOADING ──────────────────────────────────────────────────────────────── */
-  #beaLoading {
-    position: fixed; inset: 0; background: var(--bg);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    z-index: 9998; gap: 16px;
-  }
+  /* ── LOADING ─────────────────────────────────────────────────────────────────  */
+  #beaLoading { position: fixed; inset: 0; background: var(--bg); display: none; flex-direction: column; align-items: center; justify-content: center; z-index: 9998; gap: 16px; }
   .bea-spinner { width: 44px; height: 44px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: beaSpin 0.8s linear infinite; }
   @keyframes beaSpin { to { transform: rotate(360deg); } }
   .bea-loading-txt { font-family: 'Space Mono', monospace; font-size: 0.8rem; color: var(--muted); }
 
-  /* ── STATUS / TOASTS ──────────────────────────────────────────────────────── */
+  /* ── STATUS ──────────────────────────────────────────────────────────────────  */
   #beaConn { position: fixed; bottom: 16px; left: 16px; z-index: 9997; font-family: 'Space Mono', monospace; font-size: 0.65rem; padding: 6px 12px; border-radius: 20px; display: flex; align-items: center; gap: 6px; border: 1px solid; transition: all 0.3s; }
   #beaConn.online  { background: rgba(0,255,136,0.08);  color: var(--accent);  border-color: rgba(0,255,136,0.3); }
   #beaConn.offline { background: rgba(255,58,92,0.08);  color: var(--accent2); border-color: rgba(255,58,92,0.3); }
   #beaConn.syncing { background: rgba(255,204,0,0.08);  color: var(--warn);    border-color: rgba(255,204,0,0.3); }
   #beaConn .cdot   { width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: beaPulse 2s infinite; }
   @keyframes beaPulse { 0%,100%{opacity:1}50%{opacity:0.3} }
+
+  /* ── TOASTS ─────────────────────────────────────────────────────────────────  */
   #beaToasts { position: fixed; top: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 9999; }
   .bea-toast { background: var(--card); border-radius: 10px; padding: 14px 18px; min-width: 260px; max-width: 320px; border-left: 4px solid; display: flex; align-items: flex-start; gap: 10px; animation: beaSlide 0.25s ease; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
   @keyframes beaSlide { from{transform:translateX(100%);opacity:0} to{transform:translateX(0);opacity:1} }
@@ -74,7 +64,7 @@
   .bea-toast-t  { font-weight: 700; font-size: 0.85rem; margin-bottom: 2px; }
   .bea-toast-m  { font-size: 0.75rem; color: var(--muted); }
 
-  /* ── HEADER ───────────────────────────────────────────────────────────────── */
+  /* ── HEADER ──────────────────────────────────────────────────────────────────  */
   header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 12px; }
   .bea-logo { display: flex; align-items: center; gap: 12px; }
   .bea-logo-icon { width: 40px; height: 40px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
@@ -82,7 +72,7 @@
   h1 span { color: var(--accent); }
   .bea-badge { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--muted); background: var(--surface); border: 1px solid var(--border); padding: 6px 14px; border-radius: 20px; display: flex; align-items: center; gap: 6px; }
 
-  /* ── STATS ────────────────────────────────────────────────────────────────── */
+  /* ── STATS ───────────────────────────────────────────────────────────────────  */
   .bea-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 28px; }
   .bea-stat  { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; text-align: center; transition: border-color 0.2s; }
   .bea-stat:hover { border-color: var(--accent); }
@@ -93,22 +83,22 @@
   .bea-num.blue   { color: #60aaff; }
   .bea-lbl { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
 
-  /* ── PROGRESS ─────────────────────────────────────────────────────────────── */
+  /* ── PROGRESS ────────────────────────────────────────────────────────────────  */
   .bea-progress { margin-bottom: 20px; }
   .bea-progress-lbl { display: flex; justify-content: space-between; font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--muted); margin-bottom: 6px; }
   .bea-bar  { height: 6px; background: var(--surface); border-radius: 10px; overflow: hidden; }
   .bea-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #00ccff); border-radius: 10px; transition: width 0.4s ease; }
 
-  /* ── GRID / PANELS ────────────────────────────────────────────────────────── */
+  /* ── GRID / PANELS ───────────────────────────────────────────────────────────  */
   .bea-grid  { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
   @media (max-width: 700px) { .bea-grid { grid-template-columns: 1fr; } }
   .bea-panel { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
   .bea-panel-title { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); margin-bottom: 16px; }
 
-  /* ── SEARCH ───────────────────────────────────────────────────────────────── */
+  /* ── SEARCH ──────────────────────────────────────────────────────────────────  */
   .bea-search { position: relative; margin-bottom: 14px; }
   .bea-search input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-family: 'Space Mono', monospace; font-size: 0.9rem; padding: 12px 16px 12px 42px; outline: none; transition: border-color 0.2s; }
-  .bea-search input:focus  { border-color: var(--accent); }
+  .bea-search input:focus { border-color: var(--accent); }
   .bea-search input::placeholder { color: var(--muted); }
   .bea-search-ic { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
   .bea-results   { min-height: 120px; }
@@ -119,11 +109,14 @@
   .bea-name   { font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .bea-meta   { font-family: 'Space Mono', monospace; font-size: 0.68rem; color: var(--muted); margin-top: 2px; }
   .bea-sbadge { font-family: 'Space Mono', monospace; font-size: 0.6rem; padding: 4px 10px; border-radius: 20px; font-weight: 700; white-space: nowrap; text-transform: uppercase; }
-  .bea-ok     { background: rgba(0,255,136,0.15); color: var(--accent);  border: 1px solid rgba(0,255,136,0.3); }
-  .bea-pend   { background: rgba(255,204,0,0.12);  color: var(--warn);   border: 1px solid rgba(255,204,0,0.3); }
-  .bea-blk    { background: rgba(255,58,92,0.12);  color: var(--accent2);border: 1px solid rgba(255,58,92,0.3); }
+  .bea-ok   { background: rgba(0,255,136,0.15); color: var(--accent);  border: 1px solid rgba(0,255,136,0.3); }
+  .bea-pend { background: rgba(255,204,0,0.12);  color: var(--warn);   border: 1px solid rgba(255,204,0,0.3); }
+  .bea-blk  { background: rgba(255,58,92,0.12);  color: var(--accent2);border: 1px solid rgba(255,58,92,0.3); }
 
-  /* ── FORM ─────────────────────────────────────────────────────────────────── */
+  /* ── HIGHLIGHT de termos encontrados ────────────────────────────────────────  */
+  .bea-hl { background: rgba(0,255,136,0.25); border-radius: 2px; color: var(--accent); font-weight: 700; }
+
+  /* ── FORM ────────────────────────────────────────────────────────────────────  */
   .bea-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
   @media (max-width: 400px) { .bea-row { grid-template-columns: 1fr; } }
   .bea-fg { display: flex; flex-direction: column; gap: 5px; }
@@ -132,10 +125,10 @@
   .bea-fg input:focus, .bea-fg select:focus { border-color: var(--accent); }
   .bea-fg select option { background: var(--surface); }
   .bea-btn-add { width: 100%; padding: 12px; background: transparent; color: var(--accent); border: 1px solid var(--accent); border-radius: 10px; font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: all 0.15s; margin-top: 8px; }
-  .bea-btn-add:hover     { background: rgba(0,255,136,0.08); }
-  .bea-btn-add:disabled  { opacity: 0.4; cursor: not-allowed; }
+  .bea-btn-add:hover    { background: rgba(0,255,136,0.08); }
+  .bea-btn-add:disabled { opacity: 0.4; cursor: not-allowed; }
 
-  /* ── TABLE ────────────────────────────────────────────────────────────────── */
+  /* ── TABLE ───────────────────────────────────────────────────────────────────  */
   .bea-sec-title { font-size: 0.85rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; color: var(--text); border-left: 3px solid var(--accent); padding-left: 10px; }
   .bea-filter { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; align-items: center; }
   .bea-filter input { flex: 1; min-width: 160px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: 'Space Mono', monospace; font-size: 0.8rem; padding: 9px 14px; outline: none; transition: border-color 0.2s; }
@@ -155,7 +148,7 @@
   .bea-mini-un  { background: rgba(255,204,0,0.1);  color: var(--warn);    border-color: rgba(255,204,0,0.3); }
   .bea-mini-del { background: rgba(255,58,92,0.1);  color: var(--accent2); border-color: rgba(255,58,92,0.3); }
 
-  /* ── MODAL CHECK-IN ───────────────────────────────────────────────────────── */
+  /* ── MODAL ───────────────────────────────────────────────────────────────────  */
   .bea-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
   .bea-overlay.open { opacity: 1; pointer-events: all; }
   .bea-modal { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; max-width: 400px; width: 100%; transform: scale(0.95); transition: transform 0.2s; text-align: center; }
@@ -172,7 +165,7 @@
   .bea-mbtn.confirm:hover { background: #00e07a; }
   .bea-mbtn.cancel        { background: var(--surface); color: var(--muted); border: 1px solid var(--border); }
 
-  /* ── IMPORT MODAL ─────────────────────────────────────────────────────────── */
+  /* ── IMPORT ──────────────────────────────────────────────────────────────────  */
   .bea-imp-modal  { max-width: 580px; text-align: left; }
   .bea-imp-tabs   { display: flex; gap: 6px; margin-bottom: 16px; }
   .bea-itab { flex: 1; padding: 9px; border-radius: 8px; font-family: 'Syne', sans-serif; font-size: 0.78rem; font-weight: 700; cursor: pointer; border: 1px solid var(--border); background: var(--surface); color: var(--muted); transition: all 0.15s; text-align: center; }
@@ -210,7 +203,7 @@
 </head>
 <body>
 
-<!-- ── SETUP SCREEN ──────────────────────────────────────────────────────────── -->
+<!-- SETUP -->
 <div id="beaSetupScreen">
   <div class="bea-setup-box">
     <div class="bea-setup-hd">
@@ -236,7 +229,7 @@
         <input type="text" id="beaSetRepo" placeholder="bride-exclusive" autocomplete="off" />
       </div>
     </div>
-    <div class="bea-fg" style="margin-bottom: 16px;">
+    <div class="bea-fg" style="margin-bottom:16px;">
       <label>GitHub Token (Personal Access Token)</label>
       <input type="password" id="beaSetToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx" autocomplete="off" />
     </div>
@@ -245,33 +238,29 @@
   </div>
 </div>
 
-<!-- ── LOADING ───────────────────────────────────────────────────────────────── -->
-<div id="beaLoading" style="display:none;">
+<!-- LOADING -->
+<div id="beaLoading">
   <div class="bea-spinner"></div>
   <div class="bea-loading-txt" id="beaLoadingTxt">Conectando ao GitHub...</div>
 </div>
 
-<!-- ── STATUS ────────────────────────────────────────────────────────────────── -->
-<div id="beaConn" class="online">
-  <span class="cdot"></span>
-  <span id="beaConnLbl">Online — sincronizado</span>
-</div>
-
+<!-- STATUS -->
+<div id="beaConn" class="online"><span class="cdot"></span><span id="beaConnLbl">Online</span></div>
 <div id="beaToasts"></div>
 <button id="beaRecfgBtn" onclick="beaShowSetup()">⚙️ Reconfigurar GitHub</button>
 
-<!-- ── MODAL CHECK-IN ────────────────────────────────────────────────────────── -->
+<!-- MODAL CHECK-IN -->
 <div class="bea-overlay" id="beaCheckinModal">
   <div class="bea-modal">
-    <div class="bea-modal-ic" id="beaMIc">✅</div>
-    <div class="bea-modal-nm" id="beaMNm"></div>
+    <div class="bea-modal-ic"  id="beaMIc">✅</div>
+    <div class="bea-modal-nm"  id="beaMNm"></div>
     <div class="bea-modal-sub" id="beaMSub"></div>
-    <div class="bea-modal-st" id="beaMSt"></div>
+    <div class="bea-modal-st"  id="beaMSt"></div>
     <div class="bea-modal-btns" id="beaMBtns"></div>
   </div>
 </div>
 
-<!-- ── MODAL IMPORTAÇÃO ──────────────────────────────────────────────────────── -->
+<!-- MODAL IMPORTAÇÃO -->
 <div class="bea-overlay" id="beaImpModal">
   <div class="bea-modal bea-imp-modal">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
@@ -315,7 +304,7 @@
   </div>
 </div>
 
-<!-- ── MAIN ───────────────────────────────────────────────────────────────────── -->
+<!-- MAIN -->
 <div class="bea-wrap" id="beaMain" style="display:none;">
   <header>
     <div class="bea-logo">
@@ -326,13 +315,10 @@
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-      <div class="bea-badge">
-        <span class="cdot" style="width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;"></span>
-        <span>Bride Exclusive 1ª Edição</span>
-      </div>
+      <div class="bea-badge"><span class="cdot" style="width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;"></span><span>Bride Exclusive 1ª Edição</span></div>
       <button class="bea-btn-exp" onclick="beaOpenImp()" style="border-color:rgba(0,255,136,0.4);color:var(--accent);">📥 Importar lista</button>
       <button class="bea-btn-exp" onclick="beaExportCSV()">⬇ Exportar CSV</button>
-      <button class="bea-btn-exp" onclick="beaShareableLink()" style="border-color:rgba(96,170,255,0.4);color:#60aaff;" title="Copiar link para compartilhar com a equipe">🔗 Link da equipe</button>
+      <button class="bea-btn-exp" onclick="beaShareableLink()" style="border-color:rgba(96,170,255,0.4);color:#60aaff;">🔗 Link da equipe</button>
       <button class="bea-btn-exp" onclick="beaShowSetup()" title="Reconfigurar GitHub">⚙️</button>
     </div>
   </header>
@@ -354,7 +340,7 @@
       <div class="bea-panel-title">⚡ Busca & Check-in Rápido</div>
       <div class="bea-search">
         <span class="bea-search-ic">🔍</span>
-        <input type="text" id="beaSearch" placeholder="Nome ou telefone..." autocomplete="off" oninput="beaSearchPeople()" />
+        <input type="text" id="beaSearch" placeholder="Nome ou telefone (sem acento também funciona)..." autocomplete="off" oninput="beaSearchPeople()" />
       </div>
       <div class="bea-results" id="beaResults">
         <div class="bea-empty"><div class="big">👆</div>Digite para buscar</div>
@@ -411,7 +397,7 @@
       <div class="bea-empty"><div class="big">📋</div>Nenhum participante encontrado</div>
     </div>
   </div>
-</div><!-- /bea-wrap -->
+</div>
 
 <script>
 (function () {
@@ -452,7 +438,7 @@
   // ─── STATE ──────────────────────────────────────────────────────────────────
   var CFG_KEY       = 'beaGHConfig_v2';
   var DATA_PATH     = 'data/participantes.json';
-  var POLL_INTERVAL = 25000; // 25 s
+  var POLL_INTERVAL = 25000;
 
   var cfg           = null;
   var people        = [];
@@ -462,6 +448,33 @@
   var currentFilter = 'all';
   var pendingId     = null;
   var importParsed  = [];
+
+  // ─── NORMALIZAÇÃO (remove acentos, cedilha, til, etc.) ──────────────────────
+  // "Luís" → "Luis", "João" → "Joao", "ção" → "cao"
+  function norm(str) {
+    return String(str)
+      .normalize('NFD')               // decompõe caracteres: 'í' → 'i' + combining accent
+      .replace(/[\u0300-\u036f]/g, '') // remove os combining accents
+      .toLowerCase();
+  }
+
+  // Verifica se o texto contém o termo de busca (sem acentos)
+  function matchNorm(text, query) {
+    return norm(text).indexOf(norm(query)) > -1;
+  }
+
+  // Destaca o termo encontrado no texto original (preserva acentos na exibição)
+  function highlight(text, query) {
+    if (!query) return esc(text);
+    var nText  = norm(text);
+    var nQuery = norm(query);
+    var idx    = nText.indexOf(nQuery);
+    if (idx === -1) return esc(text);
+    // Usa o índice da versão normalizada para recortar o texto original
+    return esc(text.slice(0, idx)) +
+           '<span class="bea-hl">' + esc(text.slice(idx, idx + query.length)) + '</span>' +
+           esc(text.slice(idx + query.length));
+  }
 
   // ─── CONFIG ─────────────────────────────────────────────────────────────────
   function loadCfg() {
@@ -480,67 +493,32 @@
       'X-GitHub-Api-Version': '2022-11-28'
     };
   }
+  function toB64(str)  { return btoa(unescape(encodeURIComponent(str))); }
+  function fromB64(b64){ return decodeURIComponent(escape(atob(b64.replace(/\n/g,'')))); }
 
-  // Encode UTF-8 JSON → base64 (handles accents / Unicode)
-  function toB64(str) {
-    return btoa(unescape(encodeURIComponent(str)));
-  }
-  function fromB64(b64) {
-    return decodeURIComponent(escape(atob(b64.replace(/\n/g, ''))));
-  }
-
-  // Verifica se o repositório existe; se não, cria automaticamente
   async function ghEnsureRepo() {
-    var res = await fetch('https://api.github.com/repos/' + cfg.owner + '/' + cfg.repo, {
-      headers: ghHdr(), cache: 'no-store'
-    });
-    if (res.ok) return; // repositório já existe
-
+    var res = await fetch('https://api.github.com/repos/' + cfg.owner + '/' + cfg.repo, { headers: ghHdr(), cache: 'no-store' });
+    if (res.ok) return;
     if (res.status === 404) {
-      // Repositório não existe — criar automaticamente
       setLoadTxt('Criando repositório no GitHub...');
-
-      // Tenta criar como repositório pessoal primeiro, depois como org
-      var createRes = await fetch('https://api.github.com/user/repos', {
-        method: 'POST',
-        headers: ghHdr(),
-        body: JSON.stringify({
-          name:        cfg.repo,
-          description: 'Bride Exclusive — Controle de Acesso',
-          private:     true,
-          auto_init:   true   // cria branch main com README para aceitar commits
-        })
+      var cr = await fetch('https://api.github.com/user/repos', {
+        method: 'POST', headers: ghHdr(),
+        body: JSON.stringify({ name: cfg.repo, description: 'Bride Exclusive — Controle de Acesso', private: true, auto_init: true })
       });
-
-      // 422 = repo já existe (pode ter sido criado via org), tudo bem
-      if (!createRes.ok && createRes.status !== 422) {
-        // Tenta como repositório de organização
-        var orgRes = await fetch('https://api.github.com/orgs/' + cfg.owner + '/repos', {
-          method: 'POST',
-          headers: ghHdr(),
-          body: JSON.stringify({
-            name:        cfg.repo,
-            description: 'Bride Exclusive — Controle de Acesso',
-            private:     true,
-            auto_init:   true
-          })
+      if (!cr.ok && cr.status !== 422) {
+        var orgR = await fetch('https://api.github.com/orgs/' + cfg.owner + '/repos', {
+          method: 'POST', headers: ghHdr(),
+          body: JSON.stringify({ name: cfg.repo, description: 'Bride Exclusive — Controle de Acesso', private: true, auto_init: true })
         });
-        if (!orgRes.ok && orgRes.status !== 422) {
-          var ce = await orgRes.json().catch(function(){ return {}; });
-          throw new Error(
-            'Não foi possível criar o repositório. Verifique se o token tem a permissão "repo" e se o usuário "' +
-            cfg.owner + '" está correto. Detalhes: ' + (ce.message || orgRes.status)
-          );
+        if (!orgR.ok && orgR.status !== 422) {
+          var ce = await orgR.json().catch(function(){ return {}; });
+          throw new Error('Não foi possível criar o repositório: ' + (ce.message || orgR.status));
         }
       }
-
-      // Aguarda o GitHub inicializar o branch main (pode levar alguns segundos)
       setLoadTxt('Inicializando repositório...');
       await new Promise(function(r){ setTimeout(r, 3000); });
       return;
     }
-
-    // Outro erro (token inválido, sem permissão, etc.)
     var e = await res.json().catch(function(){ return {}; });
     if (res.status === 401) throw new Error('Token inválido ou expirado. Verifique o GitHub Token.');
     if (res.status === 403) throw new Error('Sem permissão. O token precisa da permissão "repo".');
@@ -548,9 +526,8 @@
   }
 
   async function ghRead() {
-    var url = ghBase() + '/contents/' + DATA_PATH;
-    var res = await fetch(url, { headers: ghHdr(), cache: 'no-store' });
-    if (res.status === 404) return null;            // arquivo ainda não existe
+    var res = await fetch(ghBase() + '/contents/' + DATA_PATH, { headers: ghHdr(), cache: 'no-store' });
+    if (res.status === 404) return null;
     if (!res.ok) {
       var e = await res.json().catch(function(){ return {}; });
       if (res.status === 401) throw new Error('Token inválido ou expirado.');
@@ -563,40 +540,24 @@
   }
 
   async function ghWrite(payload, message) {
-    var body = {
-      message: message || 'Update participantes',
-      content: toB64(JSON.stringify(payload, null, 2))
-    };
+    var body = { message: message || 'Update participantes', content: toB64(JSON.stringify(payload, null, 2)) };
     if (ghSha) body.sha = ghSha;
-
-    var res = await fetch(ghBase() + '/contents/' + DATA_PATH, {
-      method:  'PUT',
-      headers: ghHdr(),
-      body:    JSON.stringify(body)
-    });
-
+    var res = await fetch(ghBase() + '/contents/' + DATA_PATH, { method: 'PUT', headers: ghHdr(), body: JSON.stringify(body) });
     if (res.status === 409) {
-      // Stale SHA — re-fetch latest, then retry once
       await ghRead();
       body.sha = ghSha;
-      res = await fetch(ghBase() + '/contents/' + DATA_PATH, {
-        method:  'PUT',
-        headers: ghHdr(),
-        body:    JSON.stringify(body)
-      });
+      res = await fetch(ghBase() + '/contents/' + DATA_PATH, { method: 'PUT', headers: ghHdr(), body: JSON.stringify(body) });
     }
-
     if (!res.ok) {
       var e2 = await res.json().catch(function(){ return {}; });
-      throw new Error((e2.message || 'GitHub write ' + res.status));
+      throw new Error(e2.message || 'GitHub write ' + res.status);
     }
     var result = await res.json();
     ghSha = result.content.sha;
     return result;
   }
 
-  // ─── GERAR LINK COMPARTILHÁVEL ───────────────────────────────────────────────
-  // Cria URL com config embutida no hash — a equipe abre e já está configurado
+  // ─── LINK COMPARTILHÁVEL ────────────────────────────────────────────────────
   window.beaShareableLink = function() {
     if (!cfg || !cfg.token) { beaToast('warn', '⚠️ Sem configuração', 'Configure o GitHub primeiro.'); return; }
     var encoded = btoa(unescape(encodeURIComponent(JSON.stringify(cfg))));
@@ -604,12 +565,11 @@
     navigator.clipboard.writeText(url).then(function() {
       beaToast('success', '🔗 Link copiado!', 'Cole e envie para a equipe de acesso.');
     }).catch(function() {
-      prompt('Copie o link abaixo e envie para a equipe:', url);
+      prompt('Copie o link abaixo:', url);
     });
   };
 
   // ─── INIT ────────────────────────────────────────────────────────────────────
-  // Prioridade 1: config embutida no hash da URL (link compartilhável da equipe)
   (function() {
     var hash = location.hash;
     if (hash && hash.indexOf('#cfg=') === 0) {
@@ -617,10 +577,9 @@
         var decoded = JSON.parse(decodeURIComponent(escape(atob(hash.slice(5)))));
         if (decoded && decoded.token && decoded.owner && decoded.repo) {
           saveCfg(decoded);
-          // Remove hash da URL sem recarregar
           history.replaceState(null, '', location.pathname + location.search);
         }
-      } catch(e) { /* hash inválido, ignora */ }
+      } catch(e) {}
     }
   })();
 
@@ -628,7 +587,6 @@
   if (cfg && cfg.token && cfg.owner && cfg.repo) {
     showApp();
     doLoad(true).catch(function() {
-      // Auto-load falhou: mostra setup screen com erro e botão flutuante
       document.getElementById('beaMain').style.display = 'none';
       document.getElementById('beaSetupScreen').style.display = 'flex';
       document.getElementById('beaRecfgBtn').style.display = 'block';
@@ -639,30 +597,18 @@
       }
     });
   }
-  // else setup screen stays visible
 
   async function doLoad(initial) {
-    if (initial) {
-      setLoadTxt('Conectando ao GitHub...');
-      showLoading(true);
-    }
+    if (initial) { setLoadTxt('Conectando ao GitHub...'); showLoading(true); }
     try {
-      // 1. Garante que o repositório existe (cria se necessário)
       setLoadTxt('Verificando repositório...');
       await ghEnsureRepo();
-      // 2. Tenta ler o arquivo de dados
       setLoadTxt('Carregando participantes...');
       var data = await ghRead();
       if (data === null) {
-        // Primeira vez — populando com os inscritos iniciais
         setLoadTxt('Criando banco de dados...');
-        var seed = INITIAL_DATA.map(function(p, i) {
-          return {
-            id: genId(), name: p.name, phone: p.phone, email: '',
-            type: p.type, partner: p.partner || '',
-            status: 'pending', checkedAt: null,
-            createdAt: new Date().toISOString()
-          };
+        var seed = INITIAL_DATA.map(function(p) {
+          return { id: genId(), name: p.name, phone: p.phone, email: '', type: p.type, partner: p.partner || '', status: 'pending', checkedAt: null, createdAt: new Date().toISOString() };
         });
         await ghWrite(seed, 'Bride Exclusive — setup inicial');
         people = seed;
@@ -677,18 +623,13 @@
       showLoading(false);
       setConn('offline', 'Erro de conexão');
       var friendly = err.message;
-      if (err.message.indexOf('401') > -1 || err.message.toLowerCase().indexOf('token') > -1) {
-        friendly = 'Token inválido. Gere um novo em github.com/settings/tokens/new com a permissão "repo".';
-      } else if (err.message.indexOf('403') > -1 || err.message.toLowerCase().indexOf('permiss') > -1) {
-        friendly = 'Sem permissão. Verifique se o token tem a permissão "repo" marcada.';
-      } else if (err.message.indexOf('422') > -1) {
-        friendly = 'Nome de repositório inválido. Use apenas letras, números e hífens.';
-      } else if (err.message.toLowerCase().indexOf('failed to fetch') > -1 || err.message.toLowerCase().indexOf('networkerror') > -1) {
-        friendly = 'Sem conexão com a internet. Verifique sua rede e tente novamente.';
-      }
+      if (err.message.indexOf('401') > -1 || err.message.toLowerCase().indexOf('token') > -1) friendly = 'Token inválido. Gere um novo em github.com/settings/tokens/new com a permissão "repo".';
+      else if (err.message.indexOf('403') > -1 || err.message.toLowerCase().indexOf('permiss') > -1) friendly = 'Sem permissão. Verifique se o token tem a permissão "repo" marcada.';
+      else if (err.message.indexOf('422') > -1) friendly = 'Nome de repositório inválido. Use apenas letras, números e hífens.';
+      else if (err.message.toLowerCase().indexOf('failed to fetch') > -1 || err.message.toLowerCase().indexOf('networkerror') > -1) friendly = 'Sem conexão com a internet.';
       beaToast('error', '⚠️ Falha ao conectar', friendly);
       if (initial) showSetupErr(friendly);
-      throw err; // propaga para o .catch() do auto-load
+      throw err;
     }
   }
 
@@ -698,47 +639,33 @@
       var data = await ghRead();
       if (data) { people = data; beaRender(); }
       setConn('online', 'Online — sincronizado');
-    } catch(err) {
-      setConn('offline', 'Offline');
-    }
+    } catch(err) { setConn('offline', 'Offline'); }
   }
+  function startPoll() { clearInterval(pollTimer); pollTimer = setInterval(doPoll, POLL_INTERVAL); }
 
-  function startPoll() {
-    clearInterval(pollTimer);
-    pollTimer = setInterval(doPoll, POLL_INTERVAL);
-  }
-
-  // ─── WRITE HELPER (lock prevents concurrent writes) ─────────────────────────
+  // ─── WRITE HELPER ───────────────────────────────────────────────────────────
   async function ghSave(applyFn, commitMsg) {
-    if (writeLock) {
-      // Wait a bit and retry
-      await new Promise(function(r){ setTimeout(r, 800); });
-    }
+    if (writeLock) await new Promise(function(r){ setTimeout(r, 800); });
     writeLock = true;
     setConn('syncing', 'Salvando...');
     try {
-      var fresh = await ghRead();               // always get latest before writing
+      var fresh = await ghRead();
       if (fresh) people = fresh;
-      applyFn(people);                          // mutate the array
+      applyFn(people);
       await ghWrite(people, commitMsg);
       beaRender();
       setConn('online', 'Online — sincronizado');
     } catch(err) {
       setConn('offline', 'Erro ao salvar');
-      var saveMsg = err.message;
-      if (saveMsg.toLowerCase().indexOf('not found') > -1) {
-        saveMsg = 'Repositório não encontrado. Clique em ⚙️ no topo para reconfigurar.';
-      } else if (saveMsg.indexOf('401') > -1 || saveMsg.toLowerCase().indexOf('bad credential') > -1) {
-        saveMsg = 'Token expirado ou inválido. Clique em ⚙️ para atualizar.';
-      }
-      beaToast('error', '⚠️ Erro ao salvar', saveMsg);
+      var msg = err.message;
+      if (msg.toLowerCase().indexOf('not found') > -1) msg = 'Repositório não encontrado. Clique em ⚙️ para reconfigurar.';
+      else if (msg.indexOf('401') > -1 || msg.toLowerCase().indexOf('bad credential') > -1) msg = 'Token expirado. Clique em ⚙️ para atualizar.';
+      beaToast('error', '⚠️ Erro ao salvar', msg);
       throw err;
-    } finally {
-      writeLock = false;
-    }
+    } finally { writeLock = false; }
   }
 
-  // ─── SETUP SCREEN ────────────────────────────────────────────────────────────
+  // ─── SETUP ──────────────────────────────────────────────────────────────────
   window.beaSaveConfig = async function() {
     var token = document.getElementById('beaSetToken').value.trim();
     var owner = document.getElementById('beaSetOwner').value.trim();
@@ -751,14 +678,12 @@
     btn.disabled = true; btn.textContent = 'Conectando...';
     document.getElementById('beaSetErr').style.display = 'none';
     saveCfg({ token: token, owner: owner, repo: repo });
-    showApp();
-    showLoading(true);
+    showApp(); showLoading(true);
     try {
       await doLoad(true);
       document.getElementById('beaSetupScreen').style.display = 'none';
       document.getElementById('beaRecfgBtn').style.display = 'none';
     } catch(err) {
-      // doLoad já chamou showSetupErr e throw — setup screen permanece visível
       document.getElementById('beaMain').style.display = 'none';
       document.getElementById('beaSetupScreen').style.display = 'flex';
     }
@@ -780,19 +705,20 @@
 
   function showSetupErr(msg) {
     var el = document.getElementById('beaSetErr');
-    el.textContent = '⚠️ ' + msg;
-    el.style.display = 'block';
+    el.textContent = '⚠️ ' + msg; el.style.display = 'block';
+  }
+  function showApp()      { document.getElementById('beaSetupScreen').style.display = 'none'; document.getElementById('beaMain').style.display = 'block'; }
+  function showLoading(on){ document.getElementById('beaLoading').style.display = on ? 'flex' : 'none'; }
+  function setLoadTxt(t)  { document.getElementById('beaLoadingTxt').textContent = t; }
+  function setConn(cls, label) {
+    document.getElementById('beaConn').className = cls;
+    document.getElementById('beaConnLbl').textContent = label;
   }
 
-  function showApp() {
-    document.getElementById('beaSetupScreen').style.display = 'none';
-    document.getElementById('beaMain').style.display = 'block';
-  }
-
-  // ─── STATS ───────────────────────────────────────────────────────────────────
+  // ─── STATS ──────────────────────────────────────────────────────────────────
   function beaUpdateStats() {
     var total   = people.length;
-    var checked = people.filter(function(p){ return p.status === 'ok';      }).length;
+    var checked = people.filter(function(p){ return p.status === 'ok'; }).length;
     var pending = people.filter(function(p){ return p.status === 'pending'; }).length;
     var blocked = people.filter(function(p){ return p.status === 'blocked'; }).length;
     document.getElementById('beaTotal').textContent = total;
@@ -804,129 +730,103 @@
     document.getElementById('beaFill').style.width = pct + '%';
   }
 
-  // ─── BUSCA ───────────────────────────────────────────────────────────────────
+  // ─── BUSCA (com normalização de acentos) ────────────────────────────────────
   window.beaSearchPeople = function() {
-    var q  = document.getElementById('beaSearch').value.trim().toLowerCase();
+    var q  = document.getElementById('beaSearch').value.trim();
     var el = document.getElementById('beaResults');
     if (!q) { el.innerHTML = '<div class="bea-empty"><div class="big">👆</div>Digite para buscar</div>'; return; }
+
     var found = people.filter(function(p) {
-      return p.name.toLowerCase().indexOf(q) > -1 ||
+      // Busca sem acentos em nome e telefone (só dígitos para telefone)
+      return matchNorm(p.name, q) ||
              (p.phone && p.phone.replace(/\D/g,'').indexOf(q.replace(/\D/g,'')) > -1);
     });
+
     if (!found.length) { el.innerHTML = '<div class="bea-empty"><div class="big">🔎</div>Nenhum participante encontrado</div>'; return; }
+
     el.innerHTML = found.map(function(p) {
       return '<div class="bea-card" onclick="beaOpenModal(\'' + p.id + '\')">' +
         '<div class="bea-avatar" style="background:' + beaColor(p.name) + '">' + beaInitials(p.name) + '</div>' +
         '<div class="bea-info">' +
-          '<div class="bea-name">' + esc(p.name) + '</div>' +
-          '<div class="bea-meta">' + (p.phone || '—') + ' · ' + p.type + '</div>' +
+          '<div class="bea-name">' + highlight(p.name, q) + '</div>' +
+          '<div class="bea-meta">' + (p.phone || '—') + ' · ' + esc(p.type) + '</div>' +
         '</div>' +
         '<span class="bea-sbadge ' + beaSC(p.status) + '">' + beaSL(p.status) + '</span>' +
       '</div>';
     }).join('');
   };
 
-  // ─── CHECK-IN MODAL ──────────────────────────────────────────────────────────
+  // ─── MODAL CHECK-IN ─────────────────────────────────────────────────────────
   window.beaOpenModal = function(id) {
     var p = people.find(function(x){ return x.id === id; });
     if (!p) return;
     pendingId = id;
     document.getElementById('beaMNm').textContent  = p.name;
     document.getElementById('beaMSub').textContent = (p.phone || '—') + ' · ' + p.type;
-    var ic   = document.getElementById('beaMIc');
-    var st   = document.getElementById('beaMSt');
-    var btns = document.getElementById('beaMBtns');
+    var ic = document.getElementById('beaMIc'), st = document.getElementById('beaMSt'), btns = document.getElementById('beaMBtns');
     if (p.status === 'blocked') {
-      ic.textContent = '🚫'; st.className = 'bea-modal-st dup';
-      st.textContent = 'Acesso BLOQUEADO para este participante';
+      ic.textContent = '🚫'; st.className = 'bea-modal-st dup'; st.textContent = 'Acesso BLOQUEADO para este participante';
       btns.innerHTML = '<button class="bea-mbtn cancel" onclick="beaCloseModal()">Fechar</button>';
     } else if (p.status === 'ok') {
-      ic.textContent = '⚠️'; st.className = 'bea-modal-st dup';
-      st.textContent = 'Entrada já registrada às ' + p.checkedAt + ' — POSSÍVEL DUPLICIDADE!';
-      btns.innerHTML = '<button class="bea-mbtn cancel" onclick="beaCloseModal()">Cancelar</button>' +
-        '<button class="bea-mbtn confirm" onclick="beaConfirmCheckin()" style="background:var(--warn);color:#000;">Registrar mesmo assim</button>';
+      ic.textContent = '⚠️'; st.className = 'bea-modal-st dup'; st.textContent = 'Entrada já registrada às ' + p.checkedAt + ' — POSSÍVEL DUPLICIDADE!';
+      btns.innerHTML = '<button class="bea-mbtn cancel" onclick="beaCloseModal()">Cancelar</button><button class="bea-mbtn confirm" onclick="beaConfirmCheckin()" style="background:var(--warn);color:#000;">Registrar mesmo assim</button>';
     } else {
-      ic.textContent = '✅'; st.className = 'bea-modal-st ok';
-      st.textContent = 'Participante liberado — confirmar entrada?';
-      btns.innerHTML = '<button class="bea-mbtn cancel" onclick="beaCloseModal()">Cancelar</button>' +
-        '<button class="bea-mbtn confirm" onclick="beaConfirmCheckin()">Confirmar entrada</button>';
+      ic.textContent = '✅'; st.className = 'bea-modal-st ok'; st.textContent = 'Participante liberado — confirmar entrada?';
+      btns.innerHTML = '<button class="bea-mbtn cancel" onclick="beaCloseModal()">Cancelar</button><button class="bea-mbtn confirm" onclick="beaConfirmCheckin()">Confirmar entrada</button>';
     }
     document.getElementById('beaCheckinModal').classList.add('open');
   };
-
-  window.beaCloseModal = function() {
-    document.getElementById('beaCheckinModal').classList.remove('open');
-    pendingId = null;
-  };
+  window.beaCloseModal = function() { document.getElementById('beaCheckinModal').classList.remove('open'); pendingId = null; };
 
   window.beaConfirmCheckin = function() {
     if (!pendingId) return;
-    var id   = pendingId;
-    var now  = new Date();
+    var id = pendingId, now = new Date();
     var time = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-    var p    = people.find(function(x){ return x.id === id; }) || {};
+    var p = people.find(function(x){ return x.id === id; }) || {};
     beaCloseModal();
-    ghSave(function(arr) {
-      var found = arr.find(function(x){ return x.id === id; });
-      if (found) { found.status = 'ok'; found.checkedAt = time; }
-    }, 'Check-in: ' + p.name).then(function() {
-      beaToast('success', '✅ Entrada confirmada!', (p.name || '') + ' entrou às ' + time);
-    });
+    ghSave(function(arr) { var f = arr.find(function(x){ return x.id === id; }); if (f) { f.status = 'ok'; f.checkedAt = time; } }, 'Check-in: ' + p.name)
+      .then(function() { beaToast('success', '✅ Entrada confirmada!', (p.name || '') + ' entrou às ' + time); });
   };
 
-  // ─── ADICIONAR ───────────────────────────────────────────────────────────────
+  // ─── ADICIONAR ──────────────────────────────────────────────────────────────
   window.beaAddPerson = function() {
-    var name   = document.getElementById('beaInName').value.trim();
-    var phone  = document.getElementById('beaInPhone').value.trim();
-    var email  = document.getElementById('beaInEmail').value.trim().toLowerCase();
-    var type   = document.getElementById('beaInType').value;
-    var status = document.getElementById('beaInStatus').value;
+    var name = document.getElementById('beaInName').value.trim(), phone = document.getElementById('beaInPhone').value.trim();
+    var email = document.getElementById('beaInEmail').value.trim().toLowerCase();
+    var type = document.getElementById('beaInType').value, status = document.getElementById('beaInStatus').value;
     if (!name || !phone) { beaToast('error', '⚠️ Campos obrigatórios', 'Nome e telefone são necessários'); return; }
     var btn = document.getElementById('beaBtnAdd');
     btn.disabled = true; btn.textContent = 'Salvando...';
-    var newPerson = {
-      id: genId(), name: name, phone: phone, email: email, type: type,
-      partner: '', status: status, checkedAt: null,
-      createdAt: new Date().toISOString()
-    };
-    ghSave(function(arr) { arr.push(newPerson); }, 'Novo participante: ' + name)
+    var np = { id: genId(), name: name, phone: phone, email: email, type: type, partner: '', status: status, checkedAt: null, createdAt: new Date().toISOString() };
+    ghSave(function(arr) { arr.push(np); }, 'Novo participante: ' + name)
       .then(function() {
         btn.disabled = false; btn.textContent = '+ Adicionar participante';
         beaToast('success', '➕ Participante adicionado', name);
-        document.getElementById('beaInName').value   = '';
-        document.getElementById('beaInPhone').value  = '';
-        document.getElementById('beaInEmail').value  = '';
-        document.getElementById('beaInType').value   = 'Individual — R$ 80,00';
+        ['beaInName','beaInPhone','beaInEmail'].forEach(function(id){ document.getElementById(id).value = ''; });
+        document.getElementById('beaInType').value = 'Individual — R$ 80,00';
         document.getElementById('beaInStatus').value = 'pending';
-      })
-      .catch(function() { btn.disabled = false; btn.textContent = '+ Adicionar participante'; });
+      }).catch(function() { btn.disabled = false; btn.textContent = '+ Adicionar participante'; });
   };
 
-  // ─── TABELA ──────────────────────────────────────────────────────────────────
+  // ─── TABELA ─────────────────────────────────────────────────────────────────
   window.beaSetFilter = function(f) {
     currentFilter = f;
     document.querySelectorAll('.bea-fbtn').forEach(function(b){ b.classList.remove('active'); });
-    var map = { all: 'beaFAll', ok: 'beaFOk', pending: 'beaFPend', blocked: 'beaFBlk' };
-    document.getElementById(map[f]).classList.add('active');
+    document.getElementById({ all:'beaFAll', ok:'beaFOk', pending:'beaFPend', blocked:'beaFBlk' }[f]).classList.add('active');
     beaRenderTable();
   };
 
   function beaRenderTable() {
-    var q    = document.getElementById('beaTblFilter').value.trim().toLowerCase();
+    var q = document.getElementById('beaTblFilter').value.trim();
     var list = people.slice();
     if (currentFilter !== 'all') list = list.filter(function(p){ return p.status === currentFilter; });
-    if (q) list = list.filter(function(p){
-      return p.name.toLowerCase().indexOf(q) > -1 ||
-             (p.phone && p.phone.indexOf(q) > -1) ||
-             p.type.toLowerCase().indexOf(q) > -1;
-    });
-    var tbody = document.getElementById('beaTbody');
-    var empty = document.getElementById('beaTblEmpty');
+    // Filtro da tabela também sem acentos
+    if (q) list = list.filter(function(p){ return matchNorm(p.name, q) || (p.phone && p.phone.indexOf(q) > -1) || matchNorm(p.type, q); });
+    var tbody = document.getElementById('beaTbody'), empty = document.getElementById('beaTblEmpty');
     if (!list.length) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
     empty.style.display = 'none';
     tbody.innerHTML = list.map(function(p, i) {
       return '<tr>' +
-        '<td style="font-family:Space Mono,monospace;font-size:0.75rem;color:var(--muted)">' + (i + 1) + '</td>' +
+        '<td style="font-family:Space Mono,monospace;font-size:0.75rem;color:var(--muted)">' + (i+1) + '</td>' +
         '<td><div style="display:flex;align-items:center;gap:10px;">' +
           '<div class="bea-avatar" style="background:' + beaColor(p.name) + ';width:28px;height:28px;font-size:0.7rem;">' + beaInitials(p.name) + '</div>' +
           '<div><div style="font-weight:600;font-size:0.82rem;">' + esc(p.name) + '</div>' +
@@ -935,218 +835,151 @@
         '<td style="font-family:Space Mono,monospace;font-size:0.72rem;color:var(--muted)">' + (p.phone || '—') + '</td>' +
         '<td><span class="bea-sbadge" style="background:rgba(96,170,255,0.1);color:#60aaff;border:1px solid rgba(96,170,255,0.3)">' + esc(p.type) + '</span></td>' +
         '<td><span class="bea-sbadge ' + beaSC(p.status) + '">' + beaSL(p.status) + '</span></td>' +
-        '<td style="font-family:Space Mono,monospace;font-size:0.72rem;color:' + (p.checkedAt ? 'var(--accent)' : 'var(--muted)') + '">' + (p.checkedAt || '—') + '</td>' +
+        '<td style="font-family:Space Mono,monospace;font-size:0.72rem;color:' + (p.checkedAt?'var(--accent)':'var(--muted)') + '">' + (p.checkedAt||'—') + '</td>' +
         '<td><div style="display:flex;gap:6px;">' +
-          (p.status !== 'ok' && p.status !== 'blocked' ? '<button class="bea-mini bea-mini-in"  onclick="beaOpenModal(\'' + p.id + '\')">Entrada</button>' : '') +
-          (p.status === 'ok'                           ? '<button class="bea-mini bea-mini-un"  onclick="beaUndo(\'' + p.id + '\')">Desfazer</button>' : '') +
-          '<button class="bea-mini bea-mini-del" onclick="beaDel(\'' + p.id + '\')">Del</button>' +
+          (p.status!=='ok'&&p.status!=='blocked' ? '<button class="bea-mini bea-mini-in" onclick="beaOpenModal(\''+p.id+'\')">Entrada</button>' : '') +
+          (p.status==='ok' ? '<button class="bea-mini bea-mini-un" onclick="beaUndo(\''+p.id+'\')">Desfazer</button>' : '') +
+          '<button class="bea-mini bea-mini-del" onclick="beaDel(\''+p.id+'\')">Del</button>' +
         '</div></td>' +
       '</tr>';
     }).join('');
   }
 
   window.beaUndo = function(id) {
-    var p = people.find(function(x){ return x.id === id; }) || {};
-    ghSave(function(arr) {
-      var found = arr.find(function(x){ return x.id === id; });
-      if (found) { found.status = 'pending'; found.checkedAt = null; }
-    }, 'Desfazer check-in: ' + p.name).then(function() {
-      beaToast('warn', '↩ Check-in desfeito', p.name || '');
-    });
+    var p = people.find(function(x){ return x.id===id; }) || {};
+    ghSave(function(arr){ var f=arr.find(function(x){return x.id===id;}); if(f){f.status='pending';f.checkedAt=null;} }, 'Desfazer check-in: '+p.name)
+      .then(function(){ beaToast('warn','↩ Check-in desfeito', p.name||''); });
   };
-
   window.beaDel = function(id) {
-    var p = people.find(function(x){ return x.id === id; });
-    if (!p) return;
-    if (!confirm('Remover "' + p.name + '" da lista?')) return;
-    ghSave(function(arr) {
-      var idx = arr.findIndex(function(x){ return x.id === id; });
-      if (idx > -1) arr.splice(idx, 1);
-    }, 'Remover participante: ' + p.name).then(function() {
-      beaToast('warn', '🗑 Participante removido', p.name);
-    });
+    var p = people.find(function(x){ return x.id===id; });
+    if (!p || !confirm('Remover "'+p.name+'" da lista?')) return;
+    ghSave(function(arr){ var i=arr.findIndex(function(x){return x.id===id;}); if(i>-1)arr.splice(i,1); }, 'Remover: '+p.name)
+      .then(function(){ beaToast('warn','🗑 Participante removido', p.name); });
   };
 
-  // ─── EXPORT CSV ──────────────────────────────────────────────────────────────
+  // ─── EXPORT CSV ─────────────────────────────────────────────────────────────
   window.beaExportCSV = function() {
     var rows = [['Nome','Telefone','Email','Tipo','Parceiro(a)','Status','Horário Entrada']];
-    people.forEach(function(p){
-      rows.push([p.name, p.phone||'', p.email||'', p.type, p.partner||'', beaSL(p.status), p.checkedAt||'']);
-    });
-    var csv  = rows.map(function(r){ return r.map(function(v){ return '"' + v + '"'; }).join(','); }).join('\n');
-    var blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
-    var url  = URL.createObjectURL(blob);
-    var a    = document.createElement('a'); a.href = url; a.download = 'bride_exclusive.csv'; a.click();
-    beaToast('success', '⬇ CSV exportado!', 'Lista completa baixada');
+    people.forEach(function(p){ rows.push([p.name,p.phone||'',p.email||'',p.type,p.partner||'',beaSL(p.status),p.checkedAt||'']); });
+    var csv  = rows.map(function(r){ return r.map(function(v){ return '"'+v+'"'; }).join(','); }).join('\n');
+    var blob = new Blob(['\ufeff'+csv], {type:'text/csv;charset=utf-8;'});
+    var url  = URL.createObjectURL(blob); var a = document.createElement('a'); a.href=url; a.download='bride_exclusive.csv'; a.click();
+    beaToast('success','⬇ CSV exportado!','Lista completa baixada');
   };
 
-  // ─── IMPORTAÇÃO ──────────────────────────────────────────────────────────────
+  // ─── IMPORTAÇÃO ─────────────────────────────────────────────────────────────
   window.beaOpenImp = function() {
     document.getElementById('beaImpModal').classList.add('open');
     importParsed = [];
-    document.getElementById('beaImpPrev').style.display   = 'none';
-    document.getElementById('beaPasteArea').value         = '';
-    document.getElementById('beaManArea').value           = '';
-    document.getElementById('beaDZSub').textContent       = '.csv aceito';
-    setImpBtn(false, 0);
-    beaSwitchTab('file');
+    document.getElementById('beaImpPrev').style.display = 'none';
+    document.getElementById('beaPasteArea').value = '';
+    document.getElementById('beaManArea').value = '';
+    document.getElementById('beaDZSub').textContent = '.csv aceito';
+    setImpBtn(false, 0); beaSwitchTab('file');
   };
   window.beaCloseImp = function() { document.getElementById('beaImpModal').classList.remove('open'); };
-
   window.beaSwitchTab = function(tab) {
-    document.querySelectorAll('.bea-itab').forEach(function(b){ b.classList.remove('active'); });
-    document.querySelectorAll('.bea-isec').forEach(function(s){ s.classList.remove('active'); });
-    var tm = { file: 'beaItabFile', paste: 'beaItabPaste', manual: 'beaItabMan' };
-    var sm = { file: 'beaTabFile',  paste: 'beaTabPaste',  manual: 'beaTabManual' };
+    document.querySelectorAll('.bea-itab').forEach(function(b){b.classList.remove('active');});
+    document.querySelectorAll('.bea-isec').forEach(function(s){s.classList.remove('active');});
+    var tm={file:'beaItabFile',paste:'beaItabPaste',manual:'beaItabMan'};
+    var sm={file:'beaTabFile', paste:'beaTabPaste', manual:'beaTabManual'};
     document.getElementById(tm[tab]).classList.add('active');
     document.getElementById(sm[tab]).classList.add('active');
-    importParsed = [];
-    document.getElementById('beaImpPrev').style.display = 'none';
-    setImpBtn(false, 0);
+    importParsed = []; document.getElementById('beaImpPrev').style.display='none'; setImpBtn(false,0);
   };
-
-  function setImpBtn(on, count) {
-    var btn = document.getElementById('beaImpBtn');
-    btn.disabled = !on; btn.style.opacity = on ? '1' : '0.4'; btn.style.cursor = on ? 'pointer' : 'not-allowed';
-    if (on) btn.textContent = 'Importar ' + count + ' participante' + (count !== 1 ? 's' : '');
-    else    btn.textContent = 'Importar';
+  function setImpBtn(on,count) {
+    var btn=document.getElementById('beaImpBtn');
+    btn.disabled=!on; btn.style.opacity=on?'1':'0.4'; btn.style.cursor=on?'pointer':'not-allowed';
+    btn.textContent = on ? 'Importar '+count+' participante'+(count!==1?'s':'') : 'Importar';
   }
-
   window.beaHandleFile = function(file) {
-    if (!file) return;
-    document.getElementById('beaDZSub').textContent = file.name;
-    var r = new FileReader();
-    r.onload = function(e) { beaParseRows(e.target.result); };
-    r.readAsText(file, 'UTF-8');
+    if(!file)return; document.getElementById('beaDZSub').textContent=file.name;
+    var r=new FileReader(); r.onload=function(e){beaParseRows(e.target.result);}; r.readAsText(file,'UTF-8');
   };
-
-  var beaDZ = document.getElementById('beaDZ');
-  beaDZ.addEventListener('dragover',  function(e){ e.preventDefault(); beaDZ.classList.add('over'); });
-  beaDZ.addEventListener('dragleave', function(){ beaDZ.classList.remove('over'); });
-  beaDZ.addEventListener('drop',      function(e){
-    e.preventDefault(); beaDZ.classList.remove('over');
-    if (e.dataTransfer.files[0]) beaHandleFile(e.dataTransfer.files[0]);
-  });
-
-  window.beaParsePaste = function(src) {
-    beaParseRows(document.getElementById(src === 'paste' ? 'beaPasteArea' : 'beaManArea').value);
-  };
-
+  var beaDZ=document.getElementById('beaDZ');
+  beaDZ.addEventListener('dragover', function(e){e.preventDefault();beaDZ.classList.add('over');});
+  beaDZ.addEventListener('dragleave',function(){beaDZ.classList.remove('over');});
+  beaDZ.addEventListener('drop',     function(e){e.preventDefault();beaDZ.classList.remove('over');if(e.dataTransfer.files[0])beaHandleFile(e.dataTransfer.files[0]);});
+  window.beaParsePaste = function(src) { beaParseRows(document.getElementById(src==='paste'?'beaPasteArea':'beaManArea').value); };
   function beaParseRows(raw) {
-    var TYPES = ['Individual — R$ 80,00','Casal — R$ 129,90','VIP','Palestrante','Staff','Cortesia'];
-    var lines = raw.split('\n').map(function(l){ return l.trim(); }).filter(function(l){ return l.length > 0; });
-    if (!lines.length) { setImpBtn(false, 0); return; }
-    var rows = [];
-    for (var i = 0; i < lines.length; i++) {
-      var line = lines[i];
-      var sep  = line.indexOf('\t') > -1 ? '\t' : (line.indexOf(';') > -1 ? ';' : ',');
-      var cols = line.split(sep).map(function(c){ return c.replace(/^["'\s]+|["'\s]+$/g, ''); });
-      var name = cols[0] || '';
-      var ph   = (cols[1] || '').replace(/\s/g, '');
-      var em   = (cols[2] || '').toLowerCase();
-      var rt   = cols[3] || '';
-      var type = TYPES.find(function(t){ return t.toLowerCase() === rt.toLowerCase(); }) || 'Individual — R$ 80,00';
-      if (i === 0 && (name.toLowerCase().indexOf('nome') > -1 || ph.toLowerCase().indexOf('tel') > -1)) continue;
-      var state = 'valid', reason = '';
-      if (!name || name.length < 2) { state = 'invalid'; reason = 'Nome inválido'; }
-      else if (!ph || ph.replace(/\D/g,'').length < 8) { state = 'invalid'; reason = 'Telefone inválido'; }
-      else if (people.find(function(p){ return p.name.toLowerCase().trim() === name.toLowerCase().trim(); })) { state = 'duplicate'; reason = 'Já cadastrado'; }
-      rows.push({ name: name, phone: ph, email: em, type: type, state: state, reason: reason });
+    var TYPES=['Individual — R$ 80,00','Casal — R$ 129,90','VIP','Palestrante','Staff','Cortesia'];
+    var lines=raw.split('\n').map(function(l){return l.trim();}).filter(function(l){return l.length>0;});
+    if(!lines.length){setImpBtn(false,0);return;}
+    var rows=[];
+    for(var i=0;i<lines.length;i++){
+      var line=lines[i], sep=line.indexOf('\t')>-1?'\t':(line.indexOf(';')>-1?';':',');
+      var cols=line.split(sep).map(function(c){return c.replace(/^["'\s]+|["'\s]+$/g,'');});
+      var name=cols[0]||'', ph=(cols[1]||'').replace(/\s/g,''), em=(cols[2]||'').toLowerCase(), rt=cols[3]||'';
+      var type=TYPES.find(function(t){return t.toLowerCase()===rt.toLowerCase();})||'Individual — R$ 80,00';
+      if(i===0&&(name.toLowerCase().indexOf('nome')>-1||ph.toLowerCase().indexOf('tel')>-1))continue;
+      var state='valid',reason='';
+      if(!name||name.length<2){state='invalid';reason='Nome inválido';}
+      else if(!ph||ph.replace(/\D/g,'').length<8){state='invalid';reason='Telefone inválido';}
+      // Verificação de duplicados também sem acentos
+      else if(people.find(function(p){return norm(p.name)===norm(name);})){state='duplicate';reason='Já cadastrado';}
+      rows.push({name:name,phone:ph,email:em,type:type,state:state,reason:reason});
     }
-    importParsed = rows;
-    var valid = rows.filter(function(r){ return r.state === 'valid'; }).length;
-    var dup   = rows.filter(function(r){ return r.state === 'duplicate'; }).length;
-    var bad   = rows.filter(function(r){ return r.state === 'invalid'; }).length;
-    document.getElementById('beaImpSum').innerHTML =
-      '<span class="bea-sum-it sum-ok">✅ ' + valid + ' para importar</span>' +
-      (dup > 0 ? '<span class="bea-sum-it sum-dup">🔁 ' + dup + ' duplicados</span>' : '') +
-      (bad > 0 ? '<span class="bea-sum-it sum-bad">⚠️ ' + bad + ' inválidos</span>'  : '');
-    document.getElementById('beaPrevList').innerHTML = rows.map(function(r){
-      return '<div class="bea-prev-row ' + r.state + '">' +
-        '<span>' + (r.state === 'valid' ? '✅' : r.state === 'duplicate' ? '🔁' : '⚠️') + '</span>' +
-        '<span class="bea-prev-nm">' + esc(r.name || '—') + '</span>' +
-        '<span class="bea-prev-ph">' + (r.phone || '—') + '</span>' +
-        (r.reason ? '<span class="bea-prev-rs">' + r.reason + '</span>' : '<span class="bea-prev-rs" style="color:var(--muted)">' + r.type + '</span>') +
+    importParsed=rows;
+    var valid=rows.filter(function(r){return r.state==='valid';}).length;
+    var dup=rows.filter(function(r){return r.state==='duplicate';}).length;
+    var bad=rows.filter(function(r){return r.state==='invalid';}).length;
+    document.getElementById('beaImpSum').innerHTML=
+      '<span class="bea-sum-it sum-ok">✅ '+valid+' para importar</span>'+
+      (dup>0?'<span class="bea-sum-it sum-dup">🔁 '+dup+' duplicados</span>':'')+
+      (bad>0?'<span class="bea-sum-it sum-bad">⚠️ '+bad+' inválidos</span>':'');
+    document.getElementById('beaPrevList').innerHTML=rows.map(function(r){
+      return '<div class="bea-prev-row '+r.state+'">'+
+        '<span>'+(r.state==='valid'?'✅':r.state==='duplicate'?'🔁':'⚠️')+'</span>'+
+        '<span class="bea-prev-nm">'+esc(r.name||'—')+'</span>'+
+        '<span class="bea-prev-ph">'+(r.phone||'—')+'</span>'+
+        (r.reason?'<span class="bea-prev-rs">'+r.reason+'</span>':'<span class="bea-prev-rs" style="color:var(--muted)">'+r.type+'</span>')+
       '</div>';
     }).join('');
-    document.getElementById('beaImpPrev').style.display = 'block';
-    setImpBtn(valid > 0, valid);
+    document.getElementById('beaImpPrev').style.display='block';
+    setImpBtn(valid>0,valid);
   }
-
   window.beaConfirmImport = function() {
-    var toAdd = importParsed.filter(function(r){ return r.state === 'valid'; });
-    if (!toAdd.length) return;
-    var btn = document.getElementById('beaImpBtn');
-    btn.disabled = true; btn.textContent = 'Importando...';
-    var newPeople = toAdd.map(function(r) {
-      return { id: genId(), name: r.name, phone: r.phone, email: r.email || '', type: r.type, partner: '', status: 'pending', checkedAt: null, createdAt: new Date().toISOString() };
-    });
-    ghSave(function(arr) { newPeople.forEach(function(p){ arr.push(p); }); }, 'Importar ' + toAdd.length + ' participantes')
-      .then(function() {
-        beaCloseImp();
-        beaToast('success', '📥 ' + toAdd.length + ' participante' + (toAdd.length !== 1 ? 's' : '') + ' importado' + (toAdd.length !== 1 ? 's' : '') + '!', 'Dados salvos no GitHub');
-      })
-      .catch(function() { btn.disabled = false; setImpBtn(true, toAdd.length); });
+    var toAdd=importParsed.filter(function(r){return r.state==='valid';});
+    if(!toAdd.length)return;
+    var btn=document.getElementById('beaImpBtn'); btn.disabled=true; btn.textContent='Importando...';
+    var nps=toAdd.map(function(r){return{id:genId(),name:r.name,phone:r.phone,email:r.email||'',type:r.type,partner:'',status:'pending',checkedAt:null,createdAt:new Date().toISOString()};});
+    ghSave(function(arr){nps.forEach(function(p){arr.push(p);});},'Importar '+toAdd.length+' participantes')
+      .then(function(){beaCloseImp();beaToast('success','📥 '+toAdd.length+' participante'+(toAdd.length!==1?'s':'')+' importado'+(toAdd.length!==1?'s':'')+'!','Dados salvos no GitHub');})
+      .catch(function(){btn.disabled=false;setImpBtn(true,toAdd.length);});
   };
 
-  // ─── TOAST ───────────────────────────────────────────────────────────────────
-  function beaToast(type, title, msg) {
-    var el = document.createElement('div');
-    el.className = 'bea-toast ' + type;
-    el.innerHTML = '<div class="bea-toast-ic">' + (type === 'success' ? '✅' : type === 'error' ? '🚫' : '⚠️') + '</div>' +
-      '<div><div class="bea-toast-t">' + title + '</div><div class="bea-toast-m">' + msg + '</div></div>';
+  // ─── TOAST ──────────────────────────────────────────────────────────────────
+  function beaToast(type,title,msg) {
+    var el=document.createElement('div'); el.className='bea-toast '+type;
+    el.innerHTML='<div class="bea-toast-ic">'+(type==='success'?'✅':type==='error'?'🚫':'⚠️')+'</div><div><div class="bea-toast-t">'+title+'</div><div class="bea-toast-m">'+msg+'</div></div>';
     document.getElementById('beaToasts').appendChild(el);
-    setTimeout(function(){ el.remove(); }, 3500);
+    setTimeout(function(){el.remove();},3500);
   }
 
-  // ─── HELPERS ─────────────────────────────────────────────────────────────────
-  function genId() { return 'p_' + Date.now() + '_' + Math.floor(Math.random() * 1e6); }
+  // ─── HELPERS ────────────────────────────────────────────────────────────────
+  function genId()      { return 'p_'+Date.now()+'_'+Math.floor(Math.random()*1e6); }
+  function esc(str)     { return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function beaInitials(n){ return n.split(' ').slice(0,2).map(function(w){return w[0]||'';}).join('').toUpperCase(); }
+  var COLORS=['#00ff88','#60aaff','#ffcc00','#ff6eb4','#a78bfa','#fb923c','#34d399'];
+  function beaColor(n)  { var h=0; for(var i=0;i<n.length;i++)h=(h*31+n.charCodeAt(i))%COLORS.length; return COLORS[h]; }
+  function beaSC(s)     { return s==='ok'?'bea-ok':s==='blocked'?'bea-blk':'bea-pend'; }
+  function beaSL(s)     { return s==='ok'?'✅ Confirmado':s==='blocked'?'🚫 Bloqueado':'⏳ Aguardando'; }
+  function beaRender()  { beaUpdateStats(); beaRenderTable(); if(document.getElementById('beaSearch').value)beaSearchPeople(); }
 
-  function esc(str) {
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  function beaInitials(n) {
-    return n.split(' ').slice(0, 2).map(function(w){ return w[0] || ''; }).join('').toUpperCase();
-  }
-
-  var COLORS = ['#00ff88','#60aaff','#ffcc00','#ff6eb4','#a78bfa','#fb923c','#34d399'];
-  function beaColor(n) { var h = 0; for (var i = 0; i < n.length; i++) h = (h * 31 + n.charCodeAt(i)) % COLORS.length; return COLORS[h]; }
-  function beaSC(s) { return s === 'ok' ? 'bea-ok' : s === 'blocked' ? 'bea-blk' : 'bea-pend'; }
-  function beaSL(s) { return s === 'ok' ? '✅ Confirmado' : s === 'blocked' ? '🚫 Bloqueado' : '⏳ Aguardando'; }
-
-  function beaRender() { beaUpdateStats(); beaRenderTable(); if (document.getElementById('beaSearch').value) beaSearchPeople(); }
-
-  function setConn(cls, label) {
-    var el = document.getElementById('beaConn');
-    el.className = cls;
-    document.getElementById('beaConnLbl').textContent = label;
-  }
-
-  function showLoading(on) {
-    document.getElementById('beaLoading').style.display = on ? 'flex' : 'none';
-  }
-
-  function setLoadTxt(txt) {
-    document.getElementById('beaLoadingTxt').textContent = txt;
-  }
-
-  // ─── EVENTOS ─────────────────────────────────────────────────────────────────
-  document.getElementById('beaCheckinModal').addEventListener('click', function(e){ if (e.target === this) beaCloseModal(); });
-  document.getElementById('beaImpModal').addEventListener('click',     function(e){ if (e.target === this) beaCloseImp(); });
-  document.getElementById('beaSearch').addEventListener('keydown', function(e){
-    if (e.key === 'Enter') {
-      var q = this.value.trim().toLowerCase();
-      if (!q) return;
-      var found = people.filter(function(p){ return p.name.toLowerCase().indexOf(q) > -1 || (p.phone && p.phone.indexOf(q) > -1); });
-      if (found.length === 1) beaOpenModal(found[0].id);
+  // ─── EVENTOS ────────────────────────────────────────────────────────────────
+  document.getElementById('beaCheckinModal').addEventListener('click',function(e){if(e.target===this)beaCloseModal();});
+  document.getElementById('beaImpModal').addEventListener('click',    function(e){if(e.target===this)beaCloseImp();});
+  document.getElementById('beaSearch').addEventListener('keydown',function(e){
+    if(e.key==='Enter'){
+      var q=this.value.trim();
+      if(!q)return;
+      var found=people.filter(function(p){return matchNorm(p.name,q)||(p.phone&&p.phone.indexOf(q)>-1);});
+      if(found.length===1)beaOpenModal(found[0].id);
     }
   });
-  // Allow Enter to submit setup
   ['beaSetToken','beaSetOwner','beaSetRepo'].forEach(function(id){
-    document.getElementById(id).addEventListener('keydown', function(e){ if (e.key === 'Enter') beaSaveConfig(); });
+    document.getElementById(id).addEventListener('keydown',function(e){if(e.key==='Enter')beaSaveConfig();});
   });
-
 })();
 </script>
 </body>
