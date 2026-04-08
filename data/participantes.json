@@ -460,5 +460,16 @@
     "status": "pending",
     "checkedAt": null,
     "createdAt": "2026-04-08T04:46:05.911Z"
+  },
+  {
+    "id": "p_1775623765829_600505",
+    "name": "Talita locações",
+    "phone": "62985942145",
+    "email": "",
+    "type": "VIP",
+    "partner": "",
+    "status": "pending",
+    "checkedAt": null,
+    "createdAt": "2026-04-08T04:49:25.829Z"
   }
 ]
