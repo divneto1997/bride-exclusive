@@ -317,5 +317,16 @@
     "status": "pending",
     "checkedAt": null,
     "createdAt": "2026-04-04T18:52:01.320Z"
+  },
+  {
+    "id": "p_1775620266126_169564",
+    "name": "Luiz Arthur Rodrigues da Silva",
+    "phone": "62995004877",
+    "email": "",
+    "type": "VIP",
+    "partner": "",
+    "status": "pending",
+    "checkedAt": null,
+    "createdAt": "2026-04-08T03:51:06.126Z"
   }
 ]
